@@ -181,6 +181,8 @@ endif()
 # Process platform
 set( NDK_PLATFORM_DIR "android-${NDK_PLATFORM}" )
 
+
+
 # Process arch - find tool chain params
 set( NDK_ARCH_DIR "arch-${NDK_ARCH}" )
 # >> armeabi <<

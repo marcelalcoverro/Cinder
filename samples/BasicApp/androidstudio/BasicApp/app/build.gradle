@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "org.libcinder.samples.basicapp"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 21
         versionCode 1
         versionName "1.0"
@@ -67,10 +67,19 @@ android {
     cinder {
         ndkDir = plugins.getPlugin('com.android.application').sdkHandler.getNdkFolder().toString()
         cinderDir = "${projectDir}/../../../../.."
+        fezoolibDir = "/Users/marcel/Development/fezoolib"
+        shieldDir = "/Users/marcel/Development/ShieldDevelopment"
+        opencvDir = "/Users/marcel/NVPACK_TADP/OpenCV-2.4.8.2-Tegra-sdk/sdk/native"
         verbose = false
         //gles2 = true
         moduleName = "BasicApp"
         srcFiles = ["../../../src/BasicApp.cpp"]
+
+        openniincDir = "/Users/marcel/Development/OpenNI_Android/OpenNI2/Include"
+        opennilibDir = "/Users/marcel/Development/OpenNI_Android/OpenNI2/Wrappers/java/libs/armeabi-v7a"
+
+
+
         cFlags {
             "all_archs" {
                 debug = "-g"
@@ -83,15 +92,41 @@ android {
                 release = "-Os -std=c++11"
             }
         }
-        includeDirs = ["${cinderDir}/include", "${cinderDir}/boost"]
+        includeDirs = ["${cinderDir}/include", "${shieldDir}/boost_build/include/","${fezoolibDir}/include/", "${opencvDir}/jni/include", "${openniincDir}" ]
         ldLibs = ["log", "android", "EGL", "GLESv3", "OpenSLES", "z"]
+       // ldLibs += opennilibDir + "/libOpenNI2.so"
+       // ldLibs += opennilibDir + "/libusb.so"
+       // ldLibs += opennilibDir + "/libOpenNI2.jni.so"
+
         libCinder = [
             "debug" : "${cinderDir}/lib/android/\$(TARGET_PLATFORM)/\$(TARGET_ARCH_ABI)/libcinder_d.a",
             "release" : "${cinderDir}/lib/android/\$(TARGET_PLATFORM)/\$(TARGET_ARCH_ABI)/libcinder.a"
         ]
         staticLibs = [
-            "${cinderDir}/lib/android/\$(TARGET_PLATFORM)/\$(TARGET_ARCH_ABI)/libboost_filesystem.a",
-            "${cinderDir}/lib/android/\$(TARGET_PLATFORM)/\$(TARGET_ARCH_ABI)/libboost_system.a"
+//            "${cinderDir}/lib/android/\$(TARGET_PLATFORM)/\$(TARGET_ARCH_ABI)/libboost_filesystem.a",
+//            "${cinderDir}/lib/android/\$(TARGET_PLATFORM)/\$(TARGET_ARCH_ABI)/libboost_system.a"
+                "${shieldDir}/boost_build/lib/libboost_filesystem.a",
+                "${shieldDir}/boost_build/lib/libboost_system.a",
+                "${shieldDir}/boost_build/lib/libboost_serialization.a",
+                "${shieldDir}/boost_build/lib/libboost_thread.a",
+                "${shieldDir}/boost_build/lib/libboost_date_time.a",
+                "${shieldDir}/boost_build/lib/libboost_program_options.a",
+                "${fezoolibDir}/lib/android/\$(TARGET_PLATFORM)/\$(TARGET_ARCH_ABI)/libfezoolib.a",
+                "${opencvDir}/libs/armeabi-v7a/libopencv_calib3d.a",
+                "${opencvDir}/libs/armeabi-v7a/libopencv_contrib.a",
+                "${opencvDir}/libs/armeabi-v7a/libopencv_core.a",
+                "${opencvDir}/libs/armeabi-v7a/libopencv_features2d.a",
+                "${opencvDir}/libs/armeabi-v7a/libopencv_flann.a",
+                "${opencvDir}/libs/armeabi-v7a/libopencv_highgui.a",
+                "${opencvDir}/libs/armeabi-v7a/libopencv_imgproc.a",
+                "${opencvDir}/libs/armeabi-v7a/libopencv_legacy.a",
+                "${opencvDir}/libs/armeabi-v7a/libopencv_ml.a",
+                "${opencvDir}/libs/armeabi-v7a/libopencv_objdetect.a",
+                "${opencvDir}/libs/armeabi-v7a/libopencv_ocl.a",
+                "${opencvDir}/libs/armeabi-v7a/libopencv_photo.a",
+                "${opencvDir}/libs/armeabi-v7a/libopencv_stitching.a",
+                "${opencvDir}/libs/armeabi-v7a/libopencv_video.a",
+                "${opencvDir}/libs/armeabi-v7a/libopencv_videostab.a",
         ]
         stl = "gnustl_static"
         toolChainVersion = "4.9"

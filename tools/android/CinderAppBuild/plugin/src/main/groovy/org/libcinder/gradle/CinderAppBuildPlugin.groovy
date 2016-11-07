@@ -55,6 +55,11 @@ class CPPFlags {
 class CinderAppBuildPluginExtension {
     def ndkDir           = "";
     def cinderDir        = "";
+    def fezoolibDir        = "";
+    def opencvDir        = "";
+    def shieldDir        = "";
+    def openniincDir        = "";
+    def opennilibDir        = "";
     def verbose          = false;
     def moduleName       = "";
     def gles2            = false;
