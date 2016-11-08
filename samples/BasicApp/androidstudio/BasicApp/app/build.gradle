@@ -9,7 +9,7 @@ android {
     println "BUILD DIR  : ${buildDir}"
 
     defaultConfig {
-        applicationId "org.libcinder.samples.basicapp"
+        applicationId "tsaarni.nativeeglexample"
         minSdkVersion 21
         targetSdkVersion 21
         versionCode 1
@@ -74,6 +74,8 @@ android {
         //gles2 = true
         moduleName = "BasicApp"
         srcFiles = ["../../../src/BasicApp.cpp"]
+        srcFiles += ["../../../src/CustomRender.cpp"]
+        srcFiles += ["../../../src/jniapi.cpp"]
 
         openniincDir = "/Users/marcel/Development/OpenNI_Android/OpenNI2/Include"
         opennilibDir = "/Users/marcel/Development/OpenNI_Android/OpenNI2/Wrappers/java/libs/armeabi-v7a"

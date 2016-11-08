@@ -2,6 +2,8 @@
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 
+#include "fezoolib/Core/DepthGeometry.hpp"
+
 using namespace ci;
 using namespace ci::app;
 
@@ -60,9 +62,15 @@ void BasicApp::keyDown( KeyEvent event )
 
 void BasicApp::draw()
 {
+float mm = 500;
+ float avg_d = 1000;
+  int res = 320;
+    int z =  gestoos::mm_to_pixels( mm, avg_d, res );
+
+
 	// Clear the contents of the window. This call will clear
 	// both the color and depth buffers. 
-	gl::clear( Color::gray( 0.1f ) );
+	gl::clear( Color::gray( 0.8f ) );
 
 	// Set the current draw color to orange by setting values for
 	// red, green and blue directly. Values range from 0 to 1.
